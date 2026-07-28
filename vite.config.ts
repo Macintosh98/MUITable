@@ -38,8 +38,8 @@ export default defineConfig(({ mode }) => ({
       ? {
           lib: {
             entry: resolve(import.meta.dirname, "lib/main.ts"),
-            name: "Mui",
-            fileName: "mui",
+            name: "MuiTable",
+            fileName: "mui-table",
             formats: ["es", "cjs"],
           },
           rolldownOptions: {
