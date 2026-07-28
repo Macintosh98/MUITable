@@ -1,0 +1,81 @@
+{
+  "name": "@abhishekzambare/mui-table",
+  "description": "MUI Wrapper",
+  "version": "0.0.30",
+  "author": "Abhishek Zambare",
+  "license": "MIT",
+  "private": false,
+  "keywords": [
+    "react",
+    "mui",
+    "material ui",
+    "angular",
+    "vue"
+  ],
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/mui-table.cjs",
+  "module": "./dist/mui-table.js",
+  "exports": {
+    ".": {
+      "import": "./dist/mui-table.js",
+      "require": "./dist/mui-table.cjs"
+    }
+  },
+  "homepage": "https://github.com/Macintosh98/MUITable.git",
+  "bugs": {
+    "url": "https://github.com/Macintosh98/MUITable/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Macintosh98/MUITable.git"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@abhishekzambare/animate": "^0.0.5",
+    "@babel/core": "^8.0.1",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@eslint/js": "^10.0.1",
+    "@microsoft/api-extractor": "^7.58.10",
+    "@mui/icons-material": "^9.2.0",
+    "@mui/material": "^9.2.0",
+    "@rolldown/plugin-babel": "^0.2.3",
+    "@types/babel__core": "^7.20.5",
+    "@types/node": "^26.1.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@typescript/typescript6": "^6.0.2",
+    "@vitejs/plugin-react": "^6.0.3",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "eslint": "^10.7.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.3",
+    "globals": "^17.7.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.64.0",
+    "unplugin-dts": "^1.0.3",
+    "vite": "^8.1.4",
+    "vite-plugin-checker": "^0.14.4"
+  },
+  "peerDependencies": {
+    "react": "^19",
+    "react-dom": "^19",
+    "@mui/material": "^9",
+    "@mui/icons-material": "^9",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@abhishekzambare/animate": "^0.0.5"
+  }
+}
