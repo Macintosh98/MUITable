@@ -1,7 +1,7 @@
 {
   "name": "@abhishekzambare/mui-table",
   "description": "MUI Wrapper",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Abhishek Zambare",
   "license": "MIT",
   "private": false,
@@ -24,7 +24,7 @@
       "require": "./dist/mui-table.cjs"
     }
   },
-  "homepage": "https://github.com/Macintosh98/MUITable.git",
+  "homepage": "https://abhishekzambare-mui-table.vercel.app/",
   "bugs": {
     "url": "https://github.com/Macintosh98/MUITable/issues"
   },

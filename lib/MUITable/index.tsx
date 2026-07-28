@@ -5,10 +5,12 @@ import {
     Tooltip,
     Typography,
     ListItemButton,
+    IconButton,
 } from "@mui/material";
-import { MUITableFooter } from "../MUITableFooter";
 import NoDataAvailable from "../NoDataAvailable";
 import { useResponsive } from "../useResponsive";
+import SwapVertOutlinedIcon from "@mui/icons-material/SwapVertOutlined";
+import { MUITableFooter } from "../MUITableFooter";
 
 interface OneProps {
     pageNumber?: number;
@@ -22,6 +24,8 @@ interface OneProps {
         name: string;
         value: string;
         render?: (row: any) => React.ReactNode;
+        onSortClick?: () => void;
+        isSorted?: boolean;
     }[];
     data: any[];
 }
@@ -86,6 +90,27 @@ const MUITable = ({
                                     {column.name}
                                 </Typography>
                             </Tooltip>
+                            {column.isSorted && (
+                                <IconButton
+                                    sx={(theme) => ({
+                                        "&:hover": {
+                                            backgroundColor:
+                                                theme.palette.action
+                                                    .selected,
+                                        },
+                                        p: 0,
+                                        borderRadius: (theme) =>
+                                            theme.shape.borderRadius,
+                                    })}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        e.preventDefault();
+                                        column.onSortClick?.();
+                                    }}
+                                >
+                                    <SwapVertOutlinedIcon />
+                                </IconButton>
+                            )}
                         </Stack>
                     ))}
                 </Stack>
