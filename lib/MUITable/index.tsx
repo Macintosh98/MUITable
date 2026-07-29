@@ -13,6 +13,7 @@ import SwapVertOutlinedIcon from "@mui/icons-material/SwapVertOutlined";
 import { MUITableFooter } from "../MUITableFooter";
 
 interface OneProps {
+  tableHeight?: string;
   pageNumber?: number;
   pageSize?: number;
   pageTotalCount?: number;
@@ -28,10 +29,16 @@ interface OneProps {
     isSorted?: boolean;
     onRowClick?: () => void;
   }[];
-  data: any[];
+  // data: {
+  //   color: "primary" | "secondary" | "error" | "info" | "success" | "warning"
+  // }[];
+  data: ({
+    color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
+  } & Record<string, any>)[];
 }
 
 const MUITable = ({
+  tableHeight = "100%",
   pageNumber = 0,
   pageSize = 0,
   pageTotalCount = 0,
@@ -62,57 +69,59 @@ const MUITable = ({
           }}
         >
           {columns.map((column) => (
-            <Stack
-              spacing={1}
-              direction="row"
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                column.onRowClick?.();
-              }}
-              sx={{
-                alignItems: "center",
-                width: column.width,
-                justifyContent: "center",
+            <AnimateItem mKey={column?.value + "key"}>
+              <Stack
+                spacing={1}
+                direction="row"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  column.onRowClick?.();
+                }}
+                sx={{
+                  alignItems: "center",
+                  width: column.width,
+                  justifyContent: "center",
 
-                backgroundColor: (theme) => theme.palette.action.selected,
+                  backgroundColor: (theme) => theme.palette.action.selected,
 
-                borderRadius: (theme) => theme.shape.borderRadius,
+                  borderRadius: (theme) => theme.shape.borderRadius,
 
-                px: 1,
-                py: 0.5,
-              }}
-            >
-              <Tooltip title={column.name}>
-                <Typography
-                  variant="subtitle2"
-                  noWrap
-                  sx={{
-                    color: "textSecondary",
-                  }}
-                >
-                  {column.name}
-                </Typography>
-              </Tooltip>
-              {column.isSorted && (
-                <IconButton
-                  sx={(theme) => ({
-                    "&:hover": {
-                      backgroundColor: theme.palette.action.selected,
-                    },
-                    p: 0,
-                    borderRadius: (theme) => theme.shape.borderRadius,
-                  })}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    column.onSortClick?.();
-                  }}
-                >
-                  <SwapVertOutlinedIcon />
-                </IconButton>
-              )}
-            </Stack>
+                  px: 1,
+                  py: 0.5,
+                }}
+              >
+                <Tooltip title={column.name}>
+                  <Typography
+                    variant="subtitle2"
+                    noWrap
+                    sx={{
+                      color: "textSecondary",
+                    }}
+                  >
+                    {column.name}
+                  </Typography>
+                </Tooltip>
+                {column.isSorted && (
+                  <IconButton
+                    sx={(theme) => ({
+                      "&:hover": {
+                        backgroundColor: theme.palette.action.selected,
+                      },
+                      p: 0,
+                      borderRadius: (theme) => theme.shape.borderRadius,
+                    })}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      column.onSortClick?.();
+                    }}
+                  >
+                    <SwapVertOutlinedIcon />
+                  </IconButton>
+                )}
+              </Stack>
+            </AnimateItem>
           ))}
         </Stack>
 
@@ -120,7 +129,7 @@ const MUITable = ({
           spacing={0.5}
           sx={{
             overflow: "auto",
-            height: isDesktop ? "calc(100vh - 218px)" : "calc(100vh - 224px)",
+            height: tableHeight,
             width:
               data.length > 0 ? (isDesktop ? "100%" : "fit-content") : "unset",
           }}
@@ -135,7 +144,9 @@ const MUITable = ({
                 <ListItemButton
                   sx={{
                     p: "0px !important",
-
+                    backgroundColor: item.color
+                      ? item.color + ".light"
+                      : (theme: any) => theme.palette.action.hover,
                     borderRadius: (theme) => theme.shape.borderRadius,
                     py: 0,
                     "&:hover": {
