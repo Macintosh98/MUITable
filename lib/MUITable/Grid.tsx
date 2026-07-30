@@ -16,25 +16,26 @@ import { useMUIThemeContext } from "@abhishekzambare/mui";
 
 type PaginationProps =
     | {
-          pagination: true;
-          pageNumber: number;
-          pageSize: number;
-          pageTotalCount: number;
-          setPageNumber: React.Dispatch<React.SetStateAction<number>>;
-          setPageSize: React.Dispatch<React.SetStateAction<number>>;
-      }
+        pagination: true;
+        pageNumber: number;
+        pageSize: number;
+        pageTotalCount: number;
+        setPageNumber: React.Dispatch<React.SetStateAction<number>>;
+        setPageSize: React.Dispatch<React.SetStateAction<number>>;
+    }
     | {
-          pagination: false;
-          pageNumber?: never;
-          pageSize?: never;
-          pageTotalCount?: never;
-          setPageNumber?: never;
-          setPageSize?: never;
-      };
+        pagination: false;
+        pageNumber?: never;
+        pageSize?: never;
+        pageTotalCount?: never;
+        setPageNumber?: never;
+        setPageSize?: never;
+    };
 
 type MUITableProps = PaginationProps & {
     tableHeight?: string;
     pagination: boolean;
+    onRowClick?: (item:any) => void;
     columns: {
         width: string;
         name: string;
@@ -42,19 +43,18 @@ type MUITableProps = PaginationProps & {
         render?: (row: any) => React.ReactNode;
         onSortClick?: () => void;
         isSorted?: boolean;
-        onRowClick?: () => void;
     }[];
     // data: {
     //   color: "primary" | "secondary" | "error" | "info" | "success" | "warning"
     // }[];
     data: ({
         color?:
-            | "primary"
-            | "secondary"
-            | "error"
-            | "info"
-            | "success"
-            | "warning";
+        | "primary"
+        | "secondary"
+        | "error"
+        | "info"
+        | "success"
+        | "warning";
     } & Record<string, any>)[];
 };
 
@@ -63,11 +63,12 @@ const MUITable = ({
     pageNumber = 0,
     pageSize = 0,
     pageTotalCount = 0,
-    setPageNumber = () => {},
-    setPageSize = () => {},
+    setPageNumber = () => { },
+    setPageSize = () => { },
     pagination = false,
     columns,
     data,
+    onRowClick = () => { },
 }: MUITableProps) => {
     const isDesktop = useResponsive("up", "lg");
     const theme = useMUIThemeContext();
@@ -96,11 +97,6 @@ const MUITable = ({
                                 <Stack
                                     spacing={1}
                                     direction="row"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        e.preventDefault();
-                                        column.onRowClick?.();
-                                    }}
                                     sx={{
                                         alignItems: "center",
                                         width: column.width,
@@ -164,32 +160,37 @@ const MUITable = ({
                             overflow: "auto",
                             height: tableHeight,
                             width:
-                                data.length > 0
+                                data?.length > 0
                                     ? isDesktop
                                         ? "100%"
                                         : "fit-content"
                                     : "unset",
                         }}
                     >
-                        {data.length == 0 ? (
+                        {data?.length == 0 ? (
                             <AnimateItem mKey={"NoData"}>
                                 <NoDataAvailable />
                             </AnimateItem>
                         ) : (
-                            data.map((item: any) => (
+                            data?.map((item: any) => (
                                 <AnimateItem mKey={item?.id + "key"}>
                                     <ListItemButton
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            e.preventDefault();
+                                            onRowClick?.(item);
+                                        }}
                                         sx={{
                                             p: "0px !important",
                                             backgroundColor:
                                                 item.color
                                                     ? item.color +
-                                                      ".light"
+                                                    ".light"
                                                     : (theme: any) =>
-                                                          theme
-                                                              .palette
-                                                              .action
-                                                              .hover,
+                                                        theme
+                                                            .palette
+                                                            .action
+                                                            .hover,
                                             borderRadius: (theme) =>
                                                 theme.shape
                                                     .borderRadius,
@@ -234,8 +235,8 @@ const MUITable = ({
                                                             <Tooltip
                                                                 title={
                                                                     item[
-                                                                        column
-                                                                            .value
+                                                                    column
+                                                                        .value
                                                                     ]
                                                                 }
                                                             >
@@ -249,8 +250,8 @@ const MUITable = ({
                                                                 >
                                                                     {
                                                                         item[
-                                                                            column
-                                                                                .value
+                                                                        column
+                                                                            .value
                                                                         ]
                                                                     }
                                                                 </Typography>

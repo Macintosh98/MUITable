@@ -1,7 +1,7 @@
 {
     "name": "@abhishekzambare/mui-table",
     "description": "MUI Wrapper",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "author": "Abhishek Zambare",
     "license": "MIT",
     "private": false,
@@ -77,8 +77,8 @@
         "vite-plugin-checker": "^0.14.5"
     },
     "peerDependencies": {
-        "@abhishekzambare/animate": "^0.0.5",
-        "@abhishekzambare/mui": "^0.0.30",
+        "@abhishekzambare/animate": "*",
+        "@abhishekzambare/mui": "*",
         "@emotion/react": "^11",
         "@emotion/styled": "^11",
         "@mui/icons-material": "^9",
