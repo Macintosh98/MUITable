@@ -2,7 +2,6 @@ import MUITable from "../lib/MUITable";
 import { Tooltip, Typography } from "@mui/material";
 
 function App() {
-    const data:any=10;
     return (
         <MUITable
             pagination={true}
@@ -16,6 +15,7 @@ function App() {
                     width: "200px",
                     name: "Email",
                     value: "email",
+                    onSortClick: () => {},
                     render: (row: any) => (
                         <>
                             <Tooltip title={row.emailAddress}>
@@ -43,7 +43,71 @@ function App() {
                     value: "name",
                 },
             ]}
-            data={data.dasd.length}
+            data={[
+                {
+                    id: 1,
+                    name: "John Doe",
+                    email: "john.doe@example.com",
+                    color: "error",
+                    age: 30,
+                },
+                {
+                    id: 15445345,
+                    name: "John Doe",
+                    email: "john.doe@example.com",
+                    // color: "error",
+                    age: 30,
+                },
+                {
+                    id: 2,
+                    name: "Jane Smith",
+                    email: "jane.smith@example.com",
+                    color: "warning",
+                    age: 25,
+                },
+                {
+                    id: 3,
+                    name: "Bob Johnson",
+                    email: "bob.johnson@example.com",
+                    color: "info",
+                    age: 35,
+                },
+                {
+                    id: 154478675345,
+                    name: "John Doe",
+                    email: "john.doe@example.com",
+                    // color: "error",
+                    age: 30,
+                },
+                {
+                    id: 4,
+                    name: "John Doe",
+                    email: "john.doe@example.com",
+                    color: "success",
+                    age: 30,
+                },
+                {
+                    id: 5,
+                    name: "Jane Smith",
+                    email: "jane.smith@example.com",
+                    color: "primary",
+                    age: 25,
+                },
+                {
+                    id: 7456,
+                    name: "John Doe",
+                    email: "john.doe@example.com",
+                    // color: "error",
+                    age: 30,
+                },
+                {
+                    id: 6,
+                    name: "Bob Johnson",
+                    email: "bob.johnson@example.com",
+                    color: "secondary",
+                    age: 40,
+                },
+            ]}
         />
     );
 }

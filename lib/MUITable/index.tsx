@@ -6,12 +6,12 @@ const MUITable = ({
     pageNumber = 0,
     pageSize = 0,
     pageTotalCount = 0,
-    setPageNumber = () => { },
-    setPageSize = () => { },
+    setPageNumber = () => {},
+    setPageSize = () => {},
     pagination = false,
     columns,
     data,
-    onRowClick = () => { },
+    onRowClick = () => {},
 }: MUITableProps) => {
     return (
         <MUIThemeContextProvider>

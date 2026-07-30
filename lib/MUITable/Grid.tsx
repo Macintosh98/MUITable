@@ -16,21 +16,21 @@ import { useMUIThemeContext } from "@abhishekzambare/mui";
 
 type PaginationProps =
     | {
-        pagination: true;
-        pageNumber: number;
-        pageSize: number;
-        pageTotalCount: number;
-        setPageNumber: React.Dispatch<React.SetStateAction<number>>;
-        setPageSize: React.Dispatch<React.SetStateAction<number>>;
-    }
+          pagination: true;
+          pageNumber: number;
+          pageSize: number;
+          pageTotalCount: number;
+          setPageNumber: React.Dispatch<React.SetStateAction<number>>;
+          setPageSize: React.Dispatch<React.SetStateAction<number>>;
+      }
     | {
-        pagination: false;
-        pageNumber?: never;
-        pageSize?: never;
-        pageTotalCount?: never;
-        setPageNumber?: never;
-        setPageSize?: never;
-    };
+          pagination: false;
+          pageNumber?: never;
+          pageSize?: never;
+          pageTotalCount?: never;
+          setPageNumber?: never;
+          setPageSize?: never;
+      };
 
 export type MUITableProps = PaginationProps & {
     tableHeight?: string;
@@ -49,12 +49,12 @@ export type MUITableProps = PaginationProps & {
     // }[];
     data: ({
         color?:
-        | "primary"
-        | "secondary"
-        | "error"
-        | "info"
-        | "success"
-        | "warning";
+            | "primary"
+            | "secondary"
+            | "error"
+            | "info"
+            | "success"
+            | "warning";
     } & Record<string, any>)[];
 };
 
@@ -63,12 +63,12 @@ const MUITable = ({
     pageNumber = 0,
     pageSize = 0,
     pageTotalCount = 0,
-    setPageNumber = () => { },
-    setPageSize = () => { },
+    setPageNumber = () => {},
+    setPageSize = () => {},
     pagination = false,
     columns,
     data,
-    onRowClick = () => { },
+    onRowClick = () => {},
 }: MUITableProps) => {
     const isDesktop = useResponsive("up", "lg");
     const theme = useMUIThemeContext();
@@ -185,12 +185,12 @@ const MUITable = ({
                                             backgroundColor:
                                                 item.color
                                                     ? item.color +
-                                                    ".light"
+                                                      ".light"
                                                     : (theme: any) =>
-                                                        theme
-                                                            .palette
-                                                            .action
-                                                            .hover,
+                                                          theme
+                                                              .palette
+                                                              .action
+                                                              .hover,
                                             borderRadius: (theme) =>
                                                 theme.shape
                                                     .borderRadius,
@@ -235,8 +235,8 @@ const MUITable = ({
                                                             <Tooltip
                                                                 title={
                                                                     item[
-                                                                    column
-                                                                        .value
+                                                                        column
+                                                                            .value
                                                                     ]
                                                                 }
                                                             >
@@ -250,8 +250,8 @@ const MUITable = ({
                                                                 >
                                                                     {
                                                                         item[
-                                                                        column
-                                                                            .value
+                                                                            column
+                                                                                .value
                                                                         ]
                                                                     }
                                                                 </Typography>
