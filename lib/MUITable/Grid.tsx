@@ -32,10 +32,10 @@ type PaginationProps =
         setPageSize?: never;
     };
 
-type MUITableProps = PaginationProps & {
+export type MUITableProps = PaginationProps & {
     tableHeight?: string;
     pagination: boolean;
-    onRowClick?: (item:any) => void;
+    onRowClick?: (item: any) => void;
     columns: {
         width: string;
         name: string;
